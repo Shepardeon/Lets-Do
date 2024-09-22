@@ -4,12 +4,15 @@ import * as dotenv from 'dotenv'
 
 import { notFound } from './middlewares/notFound'
 import { errorHandling } from './middlewares/errorHandling'
+import { userRoutes } from './routes/userRoutes'
 
 dotenv.config()
 
 const app = express()
 
 app.use(express.json())
+
+app.use('/users', userRoutes)
 
 app.use(errorHandling)
 app.use(notFound)
