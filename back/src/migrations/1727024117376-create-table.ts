@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class Migration1727018911389 implements MigrationInterface {
-    name = 'Migration1727018911389'
+export class Migration1727024117376 implements MigrationInterface {
+    name = 'Migration1727024117376'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`CREATE TABLE "Users" ("id" SERIAL NOT NULL, "username" character varying NOT NULL, "role" integer NOT NULL, CONSTRAINT "PK_16d4f7d636df336db11d87413e3" PRIMARY KEY ("id"))`);
+        await queryRunner.query(`CREATE TABLE "Users" ("id" SERIAL NOT NULL, "username" character varying NOT NULL, "password" character varying NOT NULL, "role" integer NOT NULL, CONSTRAINT "PK_16d4f7d636df336db11d87413e3" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "Tasks" ("id" SERIAL NOT NULL, "name" character varying NOT NULL, "order" integer NOT NULL, "columnId" integer, CONSTRAINT "PK_f38c2a61ff630a16afca4dac442" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "TaskColumns" ("id" SERIAL NOT NULL, "name" character varying NOT NULL, "order" integer NOT NULL, "projectId" integer, CONSTRAINT "PK_4e72971f342c9e5dc37db9be998" PRIMARY KEY ("id"))`);
         await queryRunner.query(`CREATE TABLE "Projects" ("id" SERIAL NOT NULL, "name" character varying NOT NULL, CONSTRAINT "PK_b25c37f2cdf0161b4f10ed3121c" PRIMARY KEY ("id"))`);
