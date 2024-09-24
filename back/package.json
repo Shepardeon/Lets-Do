@@ -29,10 +29,10 @@
       "typeorm": "0.3.20"
    },
    "scripts": {
-      "dev": "cross-env NODE_ENV=dev ts-node src/index.ts",
-      "prod": "cross-env NODE_ENV=prod node build/index.js",
+      "dev": "cross-env NODE_ENV=dev ts-node src/api/index.ts",
+      "prod": "cross-env NODE_ENV=prod node build/api/index.js",
       "build": "cross-env NODE_ENV=prod npx tsc",
-      "migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate ./src/migrations/migration -d ./src/data-source.ts",
-      "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run -d ./src/data-source.ts"
+      "migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate ./src/infrastructure/migrations/migration -d ./src/infrastructure/data-source.ts",
+      "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run -d ./src/infrastructure/data-source.ts"
    }
 }
