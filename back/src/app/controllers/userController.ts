@@ -28,6 +28,16 @@ export class UserController {
       const { username, role } = req.body
 
       // TODO: finir
+      return res.status(204)
+    } catch (err) {
+      next(err)
+    }
+  }
+
+  async deleteUser(req: Request, res: Response, next: NextFunction) {
+    try {
+      // TODO: finir
+      return res.status(204)
     } catch (err) {
       next(err)
     }

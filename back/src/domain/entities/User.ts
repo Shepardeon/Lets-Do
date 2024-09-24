@@ -2,8 +2,8 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
 import { Project } from './Project'
 
 export enum UserRole {
-  User,
-  Admin,
+  User = 'User',
+  Admin = 'Admin',
 }
 
 @Entity({ name: 'Users' })
