@@ -1,4 +1,4 @@
-import { AppDataSource } from './data-source'
+import { AppDataSource } from '../infrastructure/dbConnection'
 import * as express from 'express'
 import * as dotenv from 'dotenv'
 

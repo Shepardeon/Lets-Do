@@ -2,7 +2,7 @@ import * as jwt from 'jsonwebtoken'
 import * as bcrypt from 'bcrypt'
 import * as dotenv from 'dotenv'
 
-export const useEncrypt = () => {
+export const useAuthService = () => {
   dotenv.config()
 
   async function encryptAsync(str: string) {

@@ -2,14 +2,12 @@ import 'reflect-metadata'
 import { DataSource } from 'typeorm'
 
 import * as dotenv from 'dotenv'
-import { User } from './entities/User'
-import { Project } from './entities/Project'
-import { TaskColumn } from './entities/TaskColumn'
-import { Task } from './entities/Task'
+import { User } from '../domain/entities/User'
+import { Project } from '../domain/entities/Project'
+import { TaskColumn } from '../domain/entities/TaskColumn'
+import { Task } from '../domain/entities/Task'
 
 dotenv.config()
-
-console.log(__dirname)
 
 export const AppDataSource = new DataSource({
   type: 'postgres',

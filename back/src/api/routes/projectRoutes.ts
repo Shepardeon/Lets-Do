@@ -1,10 +1,11 @@
 import * as express from 'express'
 import { requestValidation } from '../middlewares/validation'
 import { authentication } from '../middlewares/authentication'
-import { listUserProjectEndpoint } from '../api/endpoints/projects/listUserProjectEndpoint'
+import { ProjectController } from '../../app/controllers/projectController'
 
 const projectRoutes = express.Router()
+const projectController = new ProjectController()
 
-projectRoutes.get('', authentication, listUserProjectEndpoint)
+projectRoutes.get('', authentication, projectController.listUserProjectEndpoint)
 
 export { projectRoutes }
