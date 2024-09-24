@@ -1,12 +1,37 @@
 import { NextFunction, Request, Response } from 'express'
 import { AppDataSource } from '../../infrastructure/dbConnection'
-import { User } from '../../domain/entities/User'
+import { User, UserRole } from '../../domain/entities/User'
 import { useAuthService } from '../services/authService'
 import * as joi from 'joi'
 
 export class UserController {
   private userRepository = AppDataSource.getRepository(User)
   private authService = useAuthService()
+
+  createAccountRequest = joi.object({
+    username: joi.string().required(),
+    password: joi.string().required(),
+    code: joi.string().required(),
+  })
+  async createAccount(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { username, password, code } = req.body
+
+      if (!this.authService.validateCode(code)) {
+        return res.status(400).json({ message: 'Invalid invite code' })
+      }
+
+      const user = this.userRepository.create({
+        username,
+        password: await this.authService.encryptAsync(password),
+        role: UserRole.User,
+      })
+
+      return res.status(201).json({ id: user.id })
+    } catch (err) {
+      next(err)
+    }
+  }
 
   getTokenRequest = joi.object({
     username: joi.string().required(),

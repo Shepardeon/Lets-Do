@@ -27,11 +27,16 @@ export const useAuthService = () => {
     })
   }
 
+  function validateCode(code: string) {
+    return code === process.env.INVITE_CODE
+  }
+
   return {
     encryptAsync,
     compareStringAsync,
     encrypt,
     compareString,
     generateToken,
+    validateCode,
   }
 }

@@ -8,7 +8,13 @@ const userController = new UserController()
 userRoutes.post(
   '/token',
   requestValidation(userController.getTokenRequest),
-  userController.getToken
+  userController.getToken.bind(userController)
+)
+
+userRoutes.post(
+  '/register',
+  requestValidation(userController.createAccountRequest),
+  userController.createAccount.bind(userController)
 )
 
 export { userRoutes }

@@ -6,6 +6,10 @@ import { ProjectController } from '../../app/controllers/projectController'
 const projectRoutes = express.Router()
 const projectController = new ProjectController()
 
-projectRoutes.get('', authentication, projectController.listUserProjectEndpoint)
+projectRoutes.get(
+  '',
+  authentication,
+  projectController.listUserProjectEndpoint.bind(projectController)
+)
 
 export { projectRoutes }
