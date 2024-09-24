@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import * as dotenv from 'dotenv'
+import dotenv from 'dotenv'
 
 dotenv.config()
 

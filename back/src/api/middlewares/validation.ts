@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import * as joi from 'joi'
+import joi from 'joi'
 
 export const requestValidation = (schema: joi.Schema) => {
   return (req: Request, res: Response, next: NextFunction) => {

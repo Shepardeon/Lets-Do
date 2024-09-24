@@ -1,7 +1,7 @@
 import 'reflect-metadata'
 import { DataSource } from 'typeorm'
 
-import * as dotenv from 'dotenv'
+import dotenv from 'dotenv'
 import { User } from '../domain/entities/User'
 import { Project } from '../domain/entities/Project'
 import { TaskColumn } from '../domain/entities/TaskColumn'

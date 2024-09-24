@@ -2,11 +2,36 @@ import { NextFunction, Request, Response } from 'express'
 import { AppDataSource } from '../../infrastructure/dbConnection'
 import { User, UserRole } from '../../domain/entities/User'
 import { useAuthService } from '../services/authService'
-import * as joi from 'joi'
+import joi from 'joi'
 
 export class UserController {
   private userRepository = AppDataSource.getRepository(User)
   private authService = useAuthService()
+
+  async listUsers(req: Request, res: Response, next: NextFunction) {
+    try {
+      const users = this.userRepository.find()
+
+      return res.status(200).json({ users })
+    } catch (err) {
+      next(err)
+    }
+  }
+
+  updateUserRequest = joi.object({
+    username: joi.string(),
+    role: joi.allow(UserRole),
+  })
+  async updateUser(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params
+      const { username, role } = req.body
+
+      // TODO: finir
+    } catch (err) {
+      next(err)
+    }
+  }
 
   createAccountRequest = joi.object({
     username: joi.string().required(),

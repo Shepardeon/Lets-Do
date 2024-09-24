@@ -1,6 +1,6 @@
-import * as jwt from 'jsonwebtoken'
-import * as bcrypt from 'bcrypt'
-import * as dotenv from 'dotenv'
+import jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
+import dotenv from 'dotenv'
 
 export const useAuthService = () => {
   dotenv.config()
