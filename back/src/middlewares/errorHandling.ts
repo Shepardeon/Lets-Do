@@ -1,7 +1,11 @@
 import { Request, Response, NextFunction } from 'express'
 
 export default function handleErrorAsync(
-  middleware: (req: Request, res: Response, next: NextFunction) => void
+  middleware: (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => Promise<void> | void
 ) {
   return async function (req: Request, res: Response, next: NextFunction) {
     try {

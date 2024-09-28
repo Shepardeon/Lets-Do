@@ -1,10 +1,11 @@
-import express, { NextFunction, Request, Response, Router } from 'express'
+import express from 'express'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import BuildAppService from './middlewares/appServices'
+import authenticationMiddleware from './middlewares/authentication'
 /* ROUTES IMPORT */
 
 /* CONFIGURATION */
@@ -19,9 +20,14 @@ app.use(morgan('common'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
+app.use(authenticationMiddleware)
 
 /* ROUTES */
 app.get('/', function (req, res, next) {
+  res.json({ message: 'App is healthy' })
+})
+
+app.get('/test', function (req, res, next) {
   res.json({ message: 'App is healthy' })
 })
 
