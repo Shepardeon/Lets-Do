@@ -4,11 +4,13 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
+import BuildAppService from './middlewares/appServices'
 /* ROUTES IMPORT */
 
 /* CONFIGURATION */
 dotenv.config()
 const app = express()
+BuildAppService()
 
 app.use(express.json())
 app.use(helmet())
@@ -19,7 +21,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 
 /* ROUTES */
-
 app.get('/', (res, req) => {
   req.json({ message: 'App is healthy' })
 })
