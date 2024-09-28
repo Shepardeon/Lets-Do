@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { NextFunction, Request, Response, Router } from 'express'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import cors from 'cors'
@@ -21,8 +21,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 
 /* ROUTES */
-app.get('/', (res, req) => {
-  req.json({ message: 'App is healthy' })
+app.get('/', function (req, res, next) {
+  res.json({ message: 'App is healthy' })
 })
 
 /* SERVER */
