@@ -1,0 +1,18 @@
+{
+  "name": "todoapp",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "api:dev": "pnpm run --filter back dev",
+    "api:migrate": "pnpm run --filter back migrate",
+    "api:build": "pnpm run --filter back build",
+    "api:prod": "pnpm run --filter back prod",
+
+    "dev": "pnpm run -r dev",
+    "build": "pnpm run -r build",
+    "prod": "pnpm run -r prod"
+  },
+  "keywords": [],
+  "author": "Shepardeon",
+  "license": "MIT"
+}
