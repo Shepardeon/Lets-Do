@@ -1,18 +1,11 @@
 import { NextFunction, Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
 
-const publicRoutes = ['/']
-
 export default function authenticationMiddleware(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
-  if (publicRoutes.includes(req.originalUrl)) {
-    next()
-    return
-  }
-
   const header = req.headers.authorization
   if (!header) {
     res.status(401).json({ message: 'Unauthorized' })

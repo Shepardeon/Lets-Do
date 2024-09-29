@@ -4,6 +4,7 @@ import { prisma } from '../prisma'
 import { AuthService } from '../../services/authService'
 import { ServiceLocator } from '../../services/serviceLocator'
 import { IAuthService } from '../../services'
+import { Prisma } from '@prisma/client'
 
 export class UserRepository implements ICrudRepository<User> {
   private authService: AuthService
@@ -31,8 +32,12 @@ export class UserRepository implements ICrudRepository<User> {
     return await prisma.user.findUnique({ where: { id } })
   }
 
-  async listAsync(): Promise<User[]> {
-    return await prisma.user.findMany()
+  async getAsync(filter: Prisma.UserFindFirstArgs): Promise<User | null> {
+    return await prisma.user.findFirst(filter)
+  }
+
+  async listAsync(filter?: Prisma.UserFindManyArgs): Promise<User[]> {
+    return await prisma.user.findMany(filter)
   }
 
   async updateAsync(record: User): Promise<User> {

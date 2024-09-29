@@ -5,13 +5,14 @@ import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import BuildAppService from './middlewares/appServices'
-import authenticationMiddleware from './middlewares/authentication'
 /* ROUTES IMPORT */
+BuildAppService()
+import { AuthRoutes } from './routes/authRoutes'
+import errorHandlingMiddleware from './middlewares/errorHandling'
 
 /* CONFIGURATION */
 dotenv.config()
 const app = express()
-BuildAppService()
 
 app.use(express.json())
 app.use(helmet())
@@ -20,16 +21,22 @@ app.use(morgan('common'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
-app.use(authenticationMiddleware)
 
 /* ROUTES */
+// Health check route
 app.get('/', function (req, res, next) {
   res.json({ message: 'App is healthy' })
 })
 
-app.get('/test', function (req, res, next) {
-  res.json({ message: 'App is healthy' })
+app.use('/auth', AuthRoutes)
+
+// Not found catch all
+app.use(function (req, res, next) {
+  res.status(404).json({ message: 'Not Found' })
 })
+
+// Error catch all
+app.use(errorHandlingMiddleware)
 
 /* SERVER */
 const port = process.env.NODE_PORT || 3000

@@ -10,7 +10,7 @@ export class AuthService {
     return bcrypt.compare(str, hash)
   }
 
-  async generateToken(payload: object) {
+  generateToken(payload: object) {
     return jwt.sign(payload, process.env.JWT_SECRET ?? '', {
       expiresIn: process.env.JWT_EXPIRE,
     })
